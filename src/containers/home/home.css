@@ -1,0 +1,45 @@
+
+/* $gray-2:#223555;
+$gray-6:#A0ABBE;
+$gray-7:#DDE1E9;
+$gray-8:#F4F5F7;
+$gray-9:#FAFBFC; */
+/* @mixin body-01-16-light{
+  @include font;
+  font-style: normal;
+  font-weight: 300;
+font-size: 16px;
+line-height: 24px;
+} */
+.home__search .ant-input {
+  border: 1px solid #b7b7b8;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 24px;
+  /* padding: 8px 8px; */
+  width: 250px;
+}
+.home__search
+.ant-input:focus{
+  background: #fff;
+      border: 1px solid #6EACFD !important;
+      box-shadow: 0 0 0 1px #6EACFD;
+      outline: none;
+}
+.home__filters {
+  padding: 2em;
+  width: 800px;
+  margin:0 auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.home__filters .ant-btn-primary {
+  font-size: 1rem;
+  font-weight: 500;
+}
+.theft-cards{
+  width:max-content;
+  margin: 0 auto;
+}

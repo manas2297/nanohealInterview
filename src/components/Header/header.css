@@ -1,0 +1,34 @@
+.header{
+  background-color: rgb(93, 120, 240);
+  height: 200px;
+  width: 100%;
+  text-align: center;
+  padding: 2em;
+  display: flex;
+  
+}
+.header svg {
+  height:100px !important;
+  width: 100px !important;
+}
+.header .header__content{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+.header h1 {
+  color: white;
+  font-weight: 400;
+  font-size: 3rem;
+  text-transform: uppercase;
+  margin:0;
+  line-height: 1em;
+}
+.header h2{
+  font-weight: 400;
+  font-size: 2rem;
+  color: white;
+  line-height: 1em;
+  margin-top: -40px;
+}
