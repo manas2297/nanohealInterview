@@ -11,6 +11,12 @@ $gray-9:#FAFBFC; */
 font-size: 16px;
 line-height: 24px;
 } */
+.home__search{
+  margin: 0 1em;
+}
+.home__datepicker{
+  margin: 0 1em;
+}
 .home__search .ant-input {
   border: 1px solid #b7b7b8;
   font-style: normal;
@@ -19,6 +25,9 @@ line-height: 24px;
   line-height: 24px;
   /* padding: 8px 8px; */
   width: 250px;
+}
+.home{
+  width: 100%;
 }
 .home__search
 .ant-input:focus{
@@ -29,17 +38,11 @@ line-height: 24px;
 }
 .home__filters {
   padding: 2em;
-  width: 800px;
   margin:0 auto;
   display: flex;
-  justify-content: space-around;
   align-items: center;
 }
 .home__filters .ant-btn-primary {
   font-size: 1rem;
   font-weight: 500;
-}
-.theft-cards{
-  width:max-content;
-  margin: 0 auto;
 }

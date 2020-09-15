@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { push } from 'connected-react-router'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { DatePicker, Button} from 'antd';
+import { DatePicker, Button, Pagination, Row, Col} from 'antd';
 import './home.css'
 // import {ReactComponent as PoliceLogo} from '../../police.svg';
 import Header from '../../components/Header'
@@ -19,6 +19,9 @@ const Home = props => {
   const [toDate, setToDate] = useState('');
   const [fromDate, setFromDate] = useState('');
   const [cases, setCases] = useState(incidents || []);
+  const [minValue, setMinValue] = useState(0);
+  const [maxValue, setMaxValue] = useState(10);
+
   useEffect(() => {
     const params = {
       toDate,
@@ -28,12 +31,17 @@ const Home = props => {
     props.getCases(params);
     setLoading(true);
   },[]);
+
   useEffect(() => {
     if(isIncidentsFetched) {
       setLoading(false);
       setCases([...incidents]);
     }
   }, [isIncidentsFetched, incidents]);
+
+  const handleOnPageChange = () => {
+
+  }
   const onDateChange = (fieldName,date, dateString) => {
     const unixTime = getUnixTime(date);
     console.log(fieldName,unixTime, date);
@@ -46,8 +54,8 @@ const Home = props => {
   }
 
   const fetchCases = () => {
-    setLoading(true);
     if(toDate || fromDate || searchKey) {
+      setLoading(true);
       const params = {
         toDate,
         fromDate,
@@ -57,8 +65,8 @@ const Home = props => {
     } else {
       alert('Select Filters');
     }
-    
   };
+
   const FilterComponent = (
     <>
       <div className="home__filters">
@@ -88,8 +96,11 @@ const Home = props => {
     </>
   )
   const TheftCards = () => {
-    const x = cases.map((item, index) => (
-      <Cards data={item} key={index}/>
+    const x = cases.slice(minValue, maxValue).map((item, index) => (
+      <Col lg={10}>
+        <Cards data={item} key={index}/>
+      </Col>
+      
     ));
     return x;
   };
@@ -98,19 +109,38 @@ const Home = props => {
   );
   return (
     <div className="home">
-      <Header/>
-      {FilterComponent}
-      {isError ? 
-        <ErrorComponent/>
-        : (<div className="theft-cards">
-            {loading ? 
-              'Loading .....'
-              : cases.length > 0
-              ? TheftCards()
-                : (Empty)
-            } 
-          </div>)
-      }
+      <Row justify="center">
+        <Header/>
+      </Row>
+      <Row justify="center">
+        {FilterComponent}
+      </Row>
+
+      <Row justify="center">
+        {isError ? 
+          <ErrorComponent/>
+          : 
+              loading ? 
+                'Loading .....'
+                : cases.length > 0
+                ? TheftCards()
+                  : (Empty)
+              
+            
+        }  
+      </Row>
+      
+      
+      <Row justify="center">
+        <div className="home__pagination">
+          <Pagination 
+          defaultCurrent={1} 
+          total={cases.length}
+          showTotal={total => `Total ${total} items`}
+          onChange={handleOnPageChange}
+          />
+        </div>
+      </Row>
       
     </div>
   )

@@ -32,7 +32,7 @@ const Cards = ({data, key}) => {
     <div className="cards">
       <Card
       className="Case-cards"
-      style={{width:'800px', padding:'0.3em 0em'}}
+      style={{padding:'0.3em 0em'}}
       hoverable
     >
       <div className="cards__content">
