@@ -93,17 +93,20 @@ const Home = props => {
     ));
     return x;
   };
+  const Error = (
+    <h2>No Results</h2>
+  );
   return (
     <div className="home">
       <Header/>
       {FilterComponent}
       <div className="theft-cards">
           {loading ? 'Loading .....'
-            : 
-          
-          TheftCards()
+            : cases.length > 0 ? TheftCards()
+            : (Error)
           }
       </div>
+
       {/* <p>
         <button onClick={() => props.changePage()}>
           Go to About
