@@ -2,10 +2,10 @@ import React from 'react'
 import {Card, Image } from 'antd';
 import './cards.css';
 import moment from 'moment';
+import { getDateFromUnix } from '../../utils/common';
 const {Meta} = Card;
 
 const Cards = ({data, key}) => {
-  console.log(data.id,moment.utc(data.occured_at).format("MM/DD/YYYY"))
   const CardImage = (
     <Image
       src={data.media.image_url_thumb || "https://via.placeholder.com/200" } 
@@ -23,6 +23,9 @@ const Cards = ({data, key}) => {
   const CardDescription = (
     <div className="card__data-description">
       <p>{data.description || "No description available"}</p>
+      <small>Date of theft: {getDateFromUnix(data.occurred_at)} - {data.address}</small>
+      <br/>
+      <small>Reported At: {getDateFromUnix(data.updated_at)}</small>
     </div>
   );
   return (
