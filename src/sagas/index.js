@@ -12,7 +12,11 @@ export function* getCasesSaga(action) {
             type: "GET_CASES_SUCCESS",
             payload: responseBody,
         });
-    } catch (e) { }
+    } catch (e) { 
+        yield put({
+            type: 'GET_CASES_FAILED',
+        })
+    }
 }
 
 export function* watchCaseSaga(){

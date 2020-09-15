@@ -9,7 +9,7 @@ export const getCasesAPI = async params => {
       proximity: 'Berlin',
       query: params.searchKey || '',
       occurred_before: params.toDate || '',
-      occurred_after: 'dsadad',
+      occurred_after: params.fromDate || '',
     }
   });
   const isSuccess = response.status >= 200 && response.status < 300;

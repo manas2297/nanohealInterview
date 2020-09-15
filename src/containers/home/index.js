@@ -11,14 +11,14 @@ import Cards from '../../components/Cards';
 import { getCases } from './actions';
 import DatePickerComponent from '../../components/DatePickerComponent';
 import { getUnixTime } from '../../utils/common';
+import ErrorComponent from '../../components/ErrorComponent';
 const Home = props => {
-  const { isIncidentsFetched, incidents } = props;
+  const { isIncidentsFetched, incidents, isError } = props;
   const [loading, setLoading] = useState(false);
   const [searchKey, setSearchKey] = useState('');
   const [toDate, setToDate] = useState('');
   const [fromDate, setFromDate] = useState('');
   const [cases, setCases] = useState(incidents || []);
-  console.log(cases);
   useEffect(() => {
     const params = {
       toDate,
@@ -93,25 +93,25 @@ const Home = props => {
     ));
     return x;
   };
-  const Error = (
+  const Empty = (
     <h2>No Results</h2>
   );
   return (
     <div className="home">
       <Header/>
       {FilterComponent}
-      <div className="theft-cards">
-          {loading ? 'Loading .....'
-            : cases.length > 0 ? TheftCards()
-            : (Error)
-          }
-      </div>
-
-      {/* <p>
-        <button onClick={() => props.changePage()}>
-          Go to About
-        </button>
-      </p> */}
+      {isError ? 
+        <ErrorComponent/>
+        : (<div className="theft-cards">
+            {loading ? 
+              'Loading .....'
+              : cases.length > 0
+              ? TheftCards()
+                : (Empty)
+            } 
+          </div>)
+      }
+      
     </div>
   )
   
@@ -120,6 +120,7 @@ const Home = props => {
 const mapStateToProps = state => ({
   incidents: state.caseState.incidents,
   isIncidentsFetched: state.caseState.isIncidentsFetched,
+  isError: state.caseState.isError,
 })
 const mapDispatchToProps = dispatch =>
   bindActionCreators(

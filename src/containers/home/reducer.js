@@ -2,6 +2,7 @@
 const initialState = {
   incidents:[],
   isIncidentsFetched: false,
+  isError: false,
 }
 
 export default (state = initialState, action) => {
@@ -11,6 +12,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isIncidentsFetched: false,
+        isError: false,
       }
     case 'GET_CASES_SUCCESS':
       return {
@@ -22,6 +24,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isIncidentsFetched: true,
+        isError: true,
       }
     default:
       return state
