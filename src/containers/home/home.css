@@ -12,10 +12,10 @@ font-size: 16px;
 line-height: 24px;
 } */
 .home__search{
-  margin: 0 1em;
+  margin: 0 5px;
 }
 .home__datepicker{
-  margin: 0 1em;
+  margin: 0 5px;
 }
 .home__search .ant-input {
   border: 1px solid #b7b7b8;
@@ -24,7 +24,7 @@ line-height: 24px;
   font-size: 16px;
   line-height: 24px;
   /* padding: 8px 8px; */
-  width: 250px;
+  width: 100%;
 }
 .home{
   width: 100%;

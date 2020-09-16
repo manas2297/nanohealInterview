@@ -21,7 +21,7 @@ const Home = props => {
   const [cases, setCases] = useState(incidents || []);
   const [minValue, setMinValue] = useState(0);
   const [maxValue, setMaxValue] = useState(10);
-
+  const [currentPage, setCurrentPage] = useState()
   useEffect(() => {
     const params = {
       toDate,
@@ -39,8 +39,16 @@ const Home = props => {
     }
   }, [isIncidentsFetched, incidents]);
 
-  const handleOnPageChange = () => {
-
+  const handleOnPageChange = (page, pageSize) => {
+    console.log(page, pageSize);
+    const minPageEle = (page-1)*pageSize;
+    setMinValue(minPageEle);
+    const maxPageEle = page*pageSize;
+    if(maxPageEle > cases.length) {
+      setMaxValue(cases.length);
+    } else {
+      setMaxValue(maxPageEle);
+    }
   }
   const onDateChange = (fieldName,date, dateString) => {
     const unixTime = getUnixTime(date);
@@ -97,7 +105,7 @@ const Home = props => {
   )
   const TheftCards = () => {
     const x = cases.slice(minValue, maxValue).map((item, index) => (
-      <Col lg={10}>
+      <Col lg={16} sm={20} md={18}>
         <Cards data={item} key={index}/>
       </Col>
       
@@ -115,7 +123,9 @@ const Home = props => {
       <Row justify="center">
         {FilterComponent}
       </Row>
-
+      <Row justify="center">
+      <p>Total : {cases.length}</p>
+      </Row>
       <Row justify="center">
         {isError ? 
           <ErrorComponent/>
