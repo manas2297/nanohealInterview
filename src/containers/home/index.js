@@ -40,7 +40,6 @@ const Home = props => {
   }, [isIncidentsFetched, incidents]);
 
   const handleOnPageChange = (page, pageSize) => {
-    console.log(page, pageSize);
     const minPageEle = (page-1)*pageSize;
     setMinValue(minPageEle);
     const maxPageEle = page*pageSize;
@@ -52,7 +51,6 @@ const Home = props => {
   }
   const onDateChange = (fieldName,date, dateString) => {
     const unixTime = getUnixTime(date);
-    console.log(fieldName,unixTime, date);
     if(fieldName==='start') {
       setFromDate(unixTime);
     }

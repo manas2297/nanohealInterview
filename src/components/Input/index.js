@@ -3,7 +3,6 @@ import {Input} from 'antd';
 
 const InputFiled = (props) => {
   const { wrapperStyle } = props;
-  
     return (
       <div className={wrapperStyle}>
         <Input {...props}/>

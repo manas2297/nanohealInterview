@@ -1,9 +1,7 @@
 import React from "react";
 import { Card, Image } from "antd";
 import "./cards.css";
-import moment from "moment";
 import { getDateFromUnix } from "../../utils/common";
-const { Meta } = Card;
 
 const Cards = ({ data, key }) => {
   const CardImage = (

@@ -8,12 +8,6 @@ const Header = () => (
       <h1>Police Department of Berlin</h1>
       <h2>Stolen Bykes</h2>
     </div>
-    
-    {/* <p>
-      <button onClick={() => props.changePage()}>
-        Go to About
-      </button>
-    </p> */}
   </div>
 );
 
