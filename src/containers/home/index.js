@@ -81,7 +81,6 @@ const Home = props => {
         <InputFiled 
           placeholder="Search case descriptions" 
           wrapperStyle="home__search" 
-          
           value={searchKey} 
           onChange={(e) => setSearchKey(e.target.value)}
         />
