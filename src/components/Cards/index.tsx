@@ -3,7 +3,7 @@ import { Card, Image } from "antd";
 import "./cards.css";
 import { getDateFromUnix } from "../../utils/common";
 
-const Cards = ({ data, key }) => {
+const Cards = ({ data , key }) => {
   const CardImage = (
     <Image
       src={data.media.image_url_thumb || "https://via.placeholder.com/150"}
