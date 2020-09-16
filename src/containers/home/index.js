@@ -10,7 +10,7 @@ import InputFiled from '../../components/Input'
 import Cards from '../../components/Cards';
 import { getCases } from './actions';
 import DatePickerComponent from '../../components/DatePickerComponent';
-import { getUnixTime } from '../../utils/common';
+import { getUnixTime, debounce } from '../../utils/common';
 import ErrorComponent from '../../components/ErrorComponent';
 const Home = props => {
   const { isIncidentsFetched, incidents, isError } = props;
@@ -73,14 +73,17 @@ const Home = props => {
     }
   };
 
+  const handleSearch = debounce((text) => {
+    setSearchKey(text);
+    props.getCases({searchKey: text});
+  },500)
   const FilterComponent = (
     <>
       <div className="home__filters">
         <InputFiled 
           placeholder="Search case descriptions" 
           wrapperStyle="home__search" 
-          value={searchKey} 
-          onChange={(e) => setSearchKey(e.target.value)}
+          onChange={(e) => handleSearch(e.target.value)}
         />
         <DatePickerComponent
           placeholder="From"
