@@ -11,6 +11,12 @@ The user has the ability to filter the results based on the
 
 **Debounce** is implemented in Searching
 
+Initially the application will display all the results of cases with following properties:
+```
+incedent_type: theft
+proximity: Berlin
+```
+
 ## Run
 
 ```bash
