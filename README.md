@@ -1,7 +1,15 @@
 ## Description
-Implemented Redux saga for state management.
-Axios for api calls
-Moment
+Implemented Redux saga for state management,\
+Axios for api calls,\
+Moment for date related tasks,\
+Antd for components,
+
+
+The user has the ability to filter the results based on the 
+>search key\
+>Date Range or a particular date
+
+**Debounce** is implemented in Searching
 
 ## Run
 
@@ -25,3 +33,6 @@ npm start or yarn start
 "redux": "^4.0.5",  
 "redux-devtools-extension": "^2.13.8",  
 "redux-saga": "^1.1.3"  
+## Hosted At: 
+
+[Heroku](https://rocky-plains-16438.herokuapp.com/)
