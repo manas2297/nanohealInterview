@@ -1,7 +1,5 @@
 import React from 'react'
-import { Route, Link, Redirect, Switch } from 'react-router-dom'
-import Counter from '../counter'
-import About from '../about'
+import { Route, Redirect, Switch } from 'react-router-dom'
 import Home from '../home'
 
 const App = () => (
