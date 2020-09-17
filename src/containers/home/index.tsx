@@ -106,7 +106,6 @@ const Home: React.FC<HomeProps> = (props) => {
       setMaxValue(10);
       setCurrentPage(1);
     } else {
-      debugger;
       let pageNumber: number = Math.floor(cases.length / 10);
       setMinValue(pageNumber * 10);
       if (cases.length % 10 !== 0) {
@@ -148,7 +147,7 @@ const Home: React.FC<HomeProps> = (props) => {
           name="end"
           onChange={(date, dateString) => onDateChange("end", date, dateString)}
         />
-        <Button type="primary" className="findcase" onClick={fetchCases}>
+        <Button type="primary" className="home__findcase" onClick={fetchCases}>
           Find cases
         </Button>
       </div>

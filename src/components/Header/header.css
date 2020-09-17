@@ -5,17 +5,19 @@
   text-align: center;
   padding: 2em;
   display: flex;
+  align-items: center;
   
 }
 .header svg {
-  height:100px !important;
-  width: 100px !important;
+  height:120px !important;
+  width: 120px !important;
 }
 .header .header__content{
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: flex-start;
+  height: 10em;
 }
 .header h1 {
   color: white;
@@ -31,4 +33,28 @@
   color: white;
   line-height: 1em;
   margin-top: -40px;
+}
+
+@media (max-width: 768px) { 
+  .header h1 {
+    font-size: 2rem;
+  }
+  .header h2 {
+    font-size: 1.5rem;
+  }
+}
+@media (max-width: 425px) {
+  .header svg{
+    height: 80px !important;
+  }
+  .header h1 {
+    font-size: 1.2rem;
+  }
+  .header .header__content{
+    height: 7em;
+  }
+
+  .header h2 {
+    font-size: 1.2rem;
+  }
 }
