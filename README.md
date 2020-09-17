@@ -16,9 +16,10 @@ Initially the application will display all the results of cases with following p
 incedent_type: theft
 proximity: Berlin
 ```
-**Branch**
+**Branch Details** \
+```master``` deployed on Heroku.\
 ```js-implementation``` application without Typescript.\
-```typescript``` application with Typescript.\
+```typescript``` application with Typescript.
 
 ## Run
 
