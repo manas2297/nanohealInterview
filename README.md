@@ -16,6 +16,9 @@ Initially the application will display all the results of cases with following p
 incedent_type: theft
 proximity: Berlin
 ```
+**Branch**
+```js-implementation``` application without Typescript.\
+```typescript``` application with Typescript.\
 
 ## Run
 
