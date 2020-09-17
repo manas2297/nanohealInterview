@@ -11,5 +11,8 @@
   font-weight: 500;
 }
 .card__data-description p {
+  font-size: 1.4em;
+}
+.card__data-description small {
   font-size: 1em;
 }

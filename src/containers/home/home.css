@@ -1,16 +1,3 @@
-
-/* $gray-2:#223555;
-$gray-6:#A0ABBE;
-$gray-7:#DDE1E9;
-$gray-8:#F4F5F7;
-$gray-9:#FAFBFC; */
-/* @mixin body-01-16-light{
-  @include font;
-  font-style: normal;
-  font-weight: 300;
-font-size: 16px;
-line-height: 24px;
-} */
 .home__search{
   margin: 0 5px;
 }
@@ -23,7 +10,6 @@ line-height: 24px;
   font-weight: 300;
   font-size: 16px;
   line-height: 24px;
-  /* padding: 8px 8px; */
   width: 100%;
 }
 .home{
@@ -41,8 +27,19 @@ line-height: 24px;
   margin:0 auto;
   display: flex;
   align-items: center;
+  justify-content: center;
+}
+.home__filters p {
+  font-size: 1.2em;
+  margin-left: 1em;
+  margin-bottom: 0;
 }
 .home__filters .ant-btn-primary {
   font-size: 1rem;
   font-weight: 500;
+}
+
+.home__pagination {
+  padding-bottom: 4em;
+  display: flex;
 }
