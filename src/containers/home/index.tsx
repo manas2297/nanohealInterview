@@ -93,6 +93,7 @@ const Home: React.FC<HomeProps> = (props) => {
         fromDate,
         searchKey,
       };
+      goto('First');
       props.getCases(params);
     } else {
       alert("Select Filters");
@@ -121,8 +122,9 @@ const Home: React.FC<HomeProps> = (props) => {
     const params: Incident = {
       searchKey: text,
     };
-    props.getCases(params);
+    setLoading(true);
     goto("First");
+    props.getCases(params);
   }, 500);
   const FilterComponent = (
     <>
