@@ -1,7 +1,13 @@
 import React from 'react';
 import { DatePicker } from 'antd';
-
-const DatePickerComponent  = props => {
+import { Moment } from 'moment';
+type DatePickerProps = {
+  wrapperClass? : string,
+  placeHolder? : string,
+  name? : string,
+  onChange: (value: Moment | null, dateString: string) => void,
+};
+const DatePickerComponent: React.FC<DatePickerProps>  = props => {
   const {
     wrapperClass,
   } = props;

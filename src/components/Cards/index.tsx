@@ -2,8 +2,14 @@ import React from "react";
 import { Card, Image } from "antd";
 import "./cards.css";
 import { getDateFromUnix } from "../../utils/common";
+import { CardData } from "./propTypes";
 
-const Cards = ({ data , key }) => {
+type CardProps = {
+  data : CardData,
+  key : Number,
+}
+
+const Cards: React.FC<CardProps> = ({ data , key }) => {
   const CardImage = (
     <Image
       src={data.media.image_url_thumb || "https://via.placeholder.com/150"}

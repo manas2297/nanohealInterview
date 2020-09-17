@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { push } from 'connected-react-router'
-import { bindActionCreators } from 'redux'
+import { bindActionCreators, Dispatch } from 'redux'
 import { connect } from 'react-redux'
 import { DatePicker, Button, Pagination, Row, Col} from 'antd';
 import './home.css'
@@ -12,7 +12,25 @@ import { getCases } from './actions';
 import DatePickerComponent from '../../components/DatePickerComponent';
 import { getUnixTime, debounce } from '../../utils/common';
 import ErrorComponent from '../../components/ErrorComponent';
-const Home = props => {
+import { Moment } from 'moment';
+import { CardData } from '../../components/Cards/propTypes';
+import { CaseState } from '../../store/types';
+import { Incident } from './incidentTypes';
+
+const mapStateToProps = (state:{caseState:CaseState}) => ({
+  incidents: state.caseState.incidents,
+  isIncidentsFetched: state.caseState.isIncidentsFetched,
+  isError: state.caseState.isError,
+})
+const mapDispatchToProps = (dispatch:Dispatch) =>
+  bindActionCreators(
+    {
+      getCases,
+    },
+    dispatch
+  )
+type HomeProps = ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>;
+const Home: React.FC<HomeProps> = (props) => {
   const { isIncidentsFetched, incidents, isError } = props;
   const [loading, setLoading] = useState(false);
   const [searchKey, setSearchKey] = useState('');
@@ -23,7 +41,7 @@ const Home = props => {
   const [maxValue, setMaxValue] = useState(10);
   const [currentPage, setCurrentPage] = useState()
   useEffect(() => {
-    const params = {
+    const params : Incident = {
       toDate,
       fromDate,
       searchKey,
@@ -39,17 +57,19 @@ const Home = props => {
     }
   }, [isIncidentsFetched, incidents]);
 
-  const handleOnPageChange = (page, pageSize) => {
-    const minPageEle = (page-1)*pageSize;
-    setMinValue(minPageEle);
-    const maxPageEle = page*pageSize;
-    if(maxPageEle > cases.length) {
-      setMaxValue(cases.length);
-    } else {
-      setMaxValue(maxPageEle);
+  const handleOnPageChange = (page:number, pageSize?:number) => {
+    if(pageSize) {
+      const minPageEle = (page-1)*pageSize;
+      setMinValue(minPageEle);
+      const maxPageEle = page*pageSize;
+      if(maxPageEle > cases.length) {
+        setMaxValue(cases.length);
+      } else {
+        setMaxValue(maxPageEle);
+      }
     }
   }
-  const onDateChange = (fieldName,date, dateString) => {
+  const onDateChange = (fieldName: string, date: Moment | null, dateString: string) => {
     const unixTime = getUnixTime(date);
     if(fieldName==='start') {
       setFromDate(unixTime);
@@ -62,6 +82,7 @@ const Home = props => {
   const fetchCases = () => {
     if(toDate || fromDate || searchKey) {
       setLoading(true);
+      setCases([]);
       const params = {
         toDate,
         fromDate,
@@ -73,9 +94,12 @@ const Home = props => {
     }
   };
 
-  const handleSearch = debounce((text) => {
+  const handleSearch = debounce((text: string) => {
     setSearchKey(text);
-    props.getCases({searchKey: text});
+    const params:Incident = {
+      searchKey: text,
+    };
+    props.getCases(params);
   },500)
   const FilterComponent = (
     <>
@@ -83,17 +107,16 @@ const Home = props => {
         <InputFiled 
           placeholder="Search case descriptions" 
           wrapperStyle="home__search" 
-          onChange={(e) => handleSearch(e.target.value)}
+          onChange={(e:any) => handleSearch(e.target.value)}
         />
         <DatePickerComponent
-          placeholder="From"
           wrapperClass="home__datepicker"
           name="start"
-          onChange={(date,dateString) => onDateChange('start',date, dateString)}
+          onChange={(date: Moment | null, dateString: string) => onDateChange('start',date, dateString)}
         />
         <DatePickerComponent
           wrapperClass="home__datepicker"
-          placeholder="To"
+          // placeholder="To"
           name="end"
           onChange={(date,dateString) => onDateChange('end',date, dateString)}
         />
@@ -104,12 +127,11 @@ const Home = props => {
     </>
   )
   const TheftCards = () => {
-    const x = cases.slice(minValue, maxValue).map((item, index) => (
-      <Col lg={16} sm={20} md={18}>
-        <Cards data={item} key={index}/>
-      </Col>
-      
-    ));
+    const x = cases.slice(minValue, maxValue).map((value, index) => (
+        <Col lg={16} sm={20} md={18}>
+        <Cards data={value} key={index}/>
+        </Col>
+      ));
     return x;
   };
   const Empty = (
@@ -157,18 +179,7 @@ const Home = props => {
   
 }
 
-const mapStateToProps = state => ({
-  incidents: state.caseState.incidents,
-  isIncidentsFetched: state.caseState.isIncidentsFetched,
-  isError: state.caseState.isError,
-})
-const mapDispatchToProps = dispatch =>
-  bindActionCreators(
-    {
-      getCases,
-    },
-    dispatch
-  )
+
 
 export default connect(
   mapStateToProps,

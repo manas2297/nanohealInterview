@@ -1,7 +1,9 @@
-export function getCases(params){
-  console.log("here");
+import { Incident } from "./incidentTypes";
+import { CaseActionTypes, GET_CASE_START } from "./types";
+
+export function getCases(params:Incident): CaseActionTypes{
   return {
-    type: 'GET_CASES_START',
+    type: GET_CASE_START,
     payload: params,
   }
 };
